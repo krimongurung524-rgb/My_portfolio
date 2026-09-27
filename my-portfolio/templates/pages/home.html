@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section id="home" class="hero">
+
+    <div class="hero-background">
+        <div class="hero-glow glow-one"></div>
+        <div class="hero-glow glow-two"></div>
+        <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <div class="availability">
+                <span class="status-dot"></span>
+                Open to learning &amp; opportunities
+            </div>
+
+            <p class="hero-greeting">Hello, I'm</p>
+
+            <h1>Krimon <span>Gurung</span></h1>
+
+            <h2>IT Student <span>•</span> Aspiring Full-Stack Developer</h2>
+
+            <p class="hero-description">
+                I am passionate about technology, programming
+                and building useful digital solutions that
+                can solve real-world problems.
+            </p>
+
+            <p class="hero-description">
+                Currently, I am developing my skills in
+                HTML, CSS, JavaScript, Python, Django,
+                databases and modern web technologies.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'home' %}#projects" class="btn primary-btn">
+                    View My Work <span>→</span>
+                </a>
+                <a href="{% static 'files/cv.pdf' %}" class="btn secondary-btn" target="_blank" rel="noopener">
+                    Download CV <span>↓</span>
+                </a>
+            </div>
+
+            <div class="hero-socials">
+                <span>Find me on</span>
+                <a href="https://github.com/krimongurung524-rgb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/krimon-gurung-364833419/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.instagram.com/_krimon" target="_blank" rel="noopener">Instagram</a>
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+            <div class="hero-photo">
+                <img src="{% static 'images/krimon.jpeg' %}" alt="Krimon Gurung">
+            </div>
+
+            <div class="floating-card web-card">
+                <span>💻</span>
+                <div>
+                    <strong>Web Development</strong>
+                    <small>HTML • CSS • JavaScript</small>
+                </div>
+            </div>
+
+            <div class="floating-card backend-card">
+                <span>⚙️</span>
+                <div>
+                    <strong>Backend Development</strong>
+                    <small>Python • Django</small>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <strong>IT</strong>
+                <span>Student</span>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="{% url 'home' %}#about" class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <span class="scroll-arrow">↓</span>
+    </a>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="section">
+
+    <div class="section-title">
+        <p>Get To Know Me</p>
+        <h2>About Me</h2>
+    </div>
+
+    <div class="about-container">
+
+        <div class="about-image">
+            <div class="profile-image">
+                <img src="{% static 'images/krimon.jpeg' %}" alt="Krimon Gurung">
+            </div>
+        </div>
+
+        <div class="about-content">
+            <span class="section-tag">WHO I AM</span>
+
+            <h3>Passionate about technology and building useful solutions.</h3>
+
+            <p>
+                Hello! I am Krimon Gurung, an Information
+                Technology student with a strong interest
+                in software development and web technologies.
+            </p>
+
+            <p>
+                I enjoy learning how software and websites
+                are built, and I like turning ideas into
+                practical projects. My current focus is on
+                improving my programming, frontend development
+                and backend development skills.
+            </p>
+
+            <p>
+                I have been learning technologies such as
+                HTML, CSS, JavaScript, Python, Django, SQL
+                and Git. I am continuously working on projects
+                to improve my technical knowledge and
+                problem-solving abilities.
+            </p>
+
+            <p>
+                My goal is to become a skilled full-stack
+                developer and build useful software solutions
+                that can solve real-world problems.
+            </p>
+
+            <a href="https://wa.me/9779820378634" class="btn primary-btn" target="_blank" rel="noopener">
+                Let's Connect <span>→</span>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education" class="section">
+
+    <div class="section-title">
+        <p>My Academic Journey</p>
+        <h2>Education</h2>
+    </div>
+
+    <div class="education-container">
+        {% for edu in education %}
+        <div class="education-card">
+            <div class="education-year">{{ edu.period }}</div>
+            <div class="education-content">
+                <h3>{{ edu.degree }}</h3>
+                <h4>{{ edu.institution }}</h4>
+                <p>{{ edu.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="section skills-section">
+
+    <div class="section-title">
+        <p>What I Know</p>
+        <h2>My Skills</h2>
+    </div>
+
+    <div class="skills-container">
+        {% for skill in skills %}
+        <div class="skill-card">
+            <div class="skill-icon {{ skill.color_class }}">
+                <i class="{{ skill.icon_class }}"></i>
+            </div>
+            <h3>{{ skill.name }}</h3>
+            <p>{{ skill.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="section projects-section">
+
+    <div class="section-title">
+        <p>What I Have Built</p>
+        <h2>Featured Projects</h2>
+    </div>
+
+    <div class="projects-container">
+        {% for project in projects %}
+        <div class="project-card">
+            <div class="project-image">
+                <img src="{{ project.image.url }}" alt="{{ project.title }} project screenshot">
+            </div>
+
+            <div class="project-content">
+                <span class="project-status">{{ project.status }}</span>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+
+                <div class="project-tech">
+                    {% for tech in project.tech_list %}<span>{{ tech }}</span>{% endfor %}
+                </div>
+
+                <div class="project-links">
+                    {% if project.live_url %}
+                        <a href="{{ project.live_url }}" target="_blank" rel="noopener">Live Demo →</a>
+                    {% endif %}
+                    {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank" rel="noopener">GitHub →</a>
+                    {% endif %}
+                    <a href="{{ project.get_absolute_url }}">Details →</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No projects yet — add them from the <a href="/admin/">admin panel</a>.</p>
+        {% endfor %}
+    </div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact-section">
+
+    <div class="section-title contact-title">
+        <p>Let's Connect</p>
+        <h2>Get In Touch</h2>
+        <span></span>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-left">
+            <p class="contact-label">CONTACT ME</p>
+
+            <h3>Let's build something <span>useful together.</span></h3>
+
+            <p class="contact-description">
+                If you have a project, opportunity, or simply
+                want to connect, feel free to reach out to me
+                through any of the platforms below.
+            </p>
+
+            <div class="contact-detail">
+                <div class="detail-icon email-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                    <strong>Email</strong>
+                    <a href="mailto:krimongurung19@gmail.com">krimongurung19@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="contact-detail">
+                <div class="detail-icon phone-icon">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                    <strong>Phone</strong>
+                    <a href="tel:9820378634">9820378634</a>
+                </div>
+            </div>
+
+            <div class="contact-detail">
+                <div class="detail-icon location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                    <strong>Location</strong>
+                    <p>Biratnagar-11, Nepal</p>
+                </div>
+            </div>
+
+            <div class="social-area">
+                <p>Connect with me</p>
+
+                <div class="social-links">
+                    <a href="https://github.com/krimongurung524-rgb" target="_blank" rel="noopener"
+                       class="social-item github" aria-label="GitHub">
+                        <div class="social-icon"><i class="fa-brands fa-github"></i></div>
+                        <span>GitHub</span>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/krimon-gurung-364833419/" target="_blank" rel="noopener"
+                       class="social-item linkedin" aria-label="LinkedIn">
+                        <div class="social-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <span>LinkedIn</span>
+                    </a>
+
+                    <a href="https://www.instagram.com/_krimon" target="_blank" rel="noopener"
+                       class="social-item instagram" aria-label="Instagram">
+                        <div class="social-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+            <form id="contactForm" class="contact-form" method="post" action="{% url 'contact' %}" novalidate>
+                {% csrf_token %}
+                <!-- honeypot (spam filter) -->
+                <input type="text" name="website" tabindex="-1" autocomplete="off"
+                       style="position:absolute;left:-9999px" aria-hidden="true">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+                </div>
+
+                <div id="formStatus" class="form-status" role="status"></div>
+
+                <button type="submit" class="send-btn">
+                    Send Message <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

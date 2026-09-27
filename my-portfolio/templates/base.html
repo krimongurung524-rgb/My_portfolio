@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Krimon Gurung | IT Student &amp; Full-Stack Developer{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Krimon Gurung - IT Student and aspiring Full-Stack Developer from Nepal{% endblock %}">
+    <meta name="author" content="Krimon Gurung">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Krimon Gurung | IT Student &amp; Full-Stack Developer{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Krimon Gurung - IT Student and aspiring Full-Stack Developer from Nepal{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/krimon.jpeg' %}">
+    <meta name="twitter:card" content="summary">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Krimon Gurung",
+      "jobTitle": "IT Student & Aspiring Full-Stack Developer",
+      "url": "{{ request.build_absolute_uri }}",
+      "sameAs": [
+        "https://github.com/krimongurung524-rgb",
+        "https://www.linkedin.com/in/krimon-gurung-364833419/"
+      ],
+      "address": { "@type": "PostalAddress", "addressLocality": "Biratnagar", "addressCountry": "NP" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="{% url 'home' %}#home" class="logo">KG</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="{% url 'home' %}#home">Home</a></li>
+                <li><a href="{% url 'home' %}#about">About</a></li>
+                <li><a href="{% url 'home' %}#education">Education</a></li>
+                <li><a href="{% url 'home' %}#skills">Skills</a></li>
+                <li><a href="{% url 'home' %}#projects">Projects</a></li>
+                <li><a href="{% url 'home' %}#contact">Contact</a></li>
+            </ul>
+            <button id="menu-btn" class="menu-btn" aria-label="Open navigation menu">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <a href="{% url 'home' %}#home" class="footer-logo">KG</a>
+                <p>Building. Learning. Creating.</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/krimongurung524-rgb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/krimon-gurung-364833419/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.instagram.com/_krimon" target="_blank" rel="noopener">Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© {% now "Y" %} Krimon Gurung. All Rights Reserved.</p>
+            <a href="{% url 'home' %}#home">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

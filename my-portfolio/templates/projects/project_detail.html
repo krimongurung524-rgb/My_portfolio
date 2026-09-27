@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ project.title }} — Krimon Gurung{% endblock %}
+{% block meta_description %}{{ project.meta_description|default:project.description|truncatechars:160 }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{{ project.image.url }}{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="section-title">
+        <p>{{ project.status }}</p>
+        <h2>{{ project.title }}</h2>
+    </div>
+
+    <div class="projects-container">
+        <div class="project-card">
+            {% if project.image %}
+            <div class="project-image">
+                <img src="{{ project.image.url }}" alt="{{ project.title }} project screenshot">
+            </div>
+            {% endif %}
+
+            <div class="project-content">
+                <div class="project-tech">
+                    {% for tech in project.tech_list %}<span>{{ tech }}</span>{% endfor %}
+                </div>
+                <p>{{ project.description|linebreaks }}</p>
+
+                <div class="project-links">
+                    {% if project.live_url %}<a href="{{ project.live_url }}" target="_blank" rel="noopener">Live Demo →</a>{% endif %}
+                    {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener">GitHub →</a>{% endif %}
+                    <a href="{% url 'home' %}#projects">← Back to all projects</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
